@@ -1,27 +1,16 @@
 {
-  "name": "home-web",
-  "version": "0.1.0",
+  "name": "nuxt-app",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "mitt": "^3.0.1",
-    "pinia": "^2.1.7",
-    "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^5.0.4",
-    "eslint": "^8.57.0",
-    "eslint-plugin-vue": "^9.23.0",
-    "less": "^4.2.0",
-    "less-loader": "^12.2.0",
-    "vite": "^5.2.8",
-    "vite-plugin-vue-devtools": "^7.0.25"
+    "nuxt": "^3.12.4",
+    "vue": "latest"
   }
 }

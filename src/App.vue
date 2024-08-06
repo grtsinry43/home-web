@@ -1,23 +1,37 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import {ref, watchEffect} from 'vue';
+import {useColorScheme} from "@/util/useColorScheme.js";
+import bus from "@/eventBus.js";
+
+// 定义深浅模式的变量
+const isDark = ref(false);
+
+// 切换深浅模式
+const handleThemeButton = () => {
+  isDark.value = !isDark.value;
+};
+
+watchEffect(() => {
+  //当深浅模式变量改变时，发出自定义事件
+  bus.config.globalProperties.$bus.emit('themeChange', isDark.value);
+});
+
+useColorScheme();
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <banner/>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
   </header>
-
-  <RouterView />
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae ea eius explicabo fuga harum, incidunt laborum
+  maiores neque nihil numquam optio possimus quaerat quia repudiandae sequi, sit vero voluptates voluptatibus!
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae ea eius explicabo fuga harum, incidunt laborum
+  maiores neque nihil numquam optio possimus quaerat quia repudiandae sequi, sit vero voluptates voluptatibus!
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae ea eius explicabo fuga harum, incidunt laborum
+  maiores neque nihil numquam optio possimus quaerat quia repudiandae sequi, sit vero voluptates voluptatibus!
+  <!--<RouterView/>-->
+  <button @click="handleThemeButton">切换</button>
 </template>
 
 <style scoped>

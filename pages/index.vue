@@ -2,6 +2,27 @@
 import {ref} from 'vue';
 
 const showAlert = ref(true);
+
+useHead({
+  title: '开发，探索与折腾 - GRTSINTY43的个人主页',
+  meta: [
+    {
+      name: 'description',
+      content: 'GRTSINRY43的个人主页，记录了最近项目，学习进度，折腾历程，以及一些技术分享'
+    },
+    {
+      name: 'keywords',
+      content: 'GRTSINRY43, 个人主页, 开发, 折腾, 探索'
+    }
+  ]
+})
+
+useSeoMeta({
+  title: '开发，探索与折腾 - GRTSINTY43的个人主页',
+  ogTitle: '开发，探索与折腾 - GRTSINTY43的个人主页',
+  description: 'GRTSINRY43的个人主页，记录了最近项目，学习进度，折腾历程，以及一些技术分享',
+  ogDescription: 'GRTSINRY43的个人主页，记录了最近项目，学习进度，折腾历程，以及一些技术分享',
+})
 </script>
 
 <template>

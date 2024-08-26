@@ -36,5 +36,12 @@ export default defineNuxtConfig({
                 changeOrigin: true,
             },
         },
-    }
+    },
+    app: {
+        head: {
+            title: '开发，探索与折腾 - GRTSINTY43的个人主页',
+            charset: 'utf-8',
+            viewport: 'width=device-width, initial-scale=1',
+        }
+    },
 })

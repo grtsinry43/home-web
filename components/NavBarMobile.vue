@@ -1,101 +1,95 @@
 <script setup lang="ts">
-import {ref, onMounted, onBeforeUnmount} from 'vue';
+import { ref } from 'vue'
 
-const isMenuVisible = ref(false);
+const colorMode = useColorMode()
+const isMenuOpen = ref(false)
+
+const toggleTheme = () => {
+  colorMode.preference = colorMode.preference === 'dark' ? 'light' : 'dark'
+}
 
 const toggleMenu = () => {
-  isMenuVisible.value = !isMenuVisible.value;
-};
-
-const handleClickOutside = (event: MouseEvent) => {
-  const menuIconContainer = document.querySelector('.menu-icon-container');
-  if (menuIconContainer && !menuIconContainer.contains(event.target as Node)) {
-    isMenuVisible.value = false;
-  }
-};
-
-onMounted(() => {
-  document.addEventListener('click', handleClickOutside);
-});
-
-onBeforeUnmount(() => {
-  document.removeEventListener('click', handleClickOutside);
-});
+  isMenuOpen.value = !isMenuOpen.value
+}
 </script>
 
 <template>
-  <div class="nav-container fixed w-dvw">
-    <UContainer class="flex flex-col nav-inner">
-      <div class="nav-logo-bar flex">
-        <div class="nav-logo flex flex-row">
-          <NuxtLink to="/">
-            Grtsinry43 的个人主页
-          </NuxtLink>
-        </div>
-        <div class="menu-icon-container" @click="toggleMenu">
-          <Icon class="menu-icon" name="i-simple-line-icons:menu"/>
-        </div>
+  <div class="nav-container fixed w-full bg-opacity-80 bg-blue-50 text-blue-950 dark:bg-opacity-80 dark:bg-black dark:text-white">
+    <UContainer class="flex flex-row items-center justify-between nav-inner">
+      <div class="nav-logo">
+        <NuxtLink to="/" class="font-bold">Grtsinry43 的个人主页</NuxtLink>
       </div>
-      <div v-if="isMenuVisible" class="nav-links flex flex-col">
-        <NuxtLink class="nav-item" to="/">首页</NuxtLink>
-        <NuxtLink class="nav-item" to="/about">关于</NuxtLink>
-        <NuxtLink class="nav-item" to="/blog">博客</NuxtLink>
-        <NuxtLink class="nav-item" to="/project">项目</NuxtLink>
-        <NuxtLink class="nav-item" to="/docs">文档</NuxtLink>
-        <NuxtLink class="nav-item" to="/reach_me">联系我</NuxtLink>
+      <!-- Toggle Button for Mobile Menu -->
+      <UButton class="lg:hidden bg-opacity-0 dark:bg-opacity-0" @click="toggleMenu"
+               icon="i-heroicons:bars-3-bottom-right"
+               square
+               color="gray"
+      >
+      </UButton>
+      <!-- Theme Toggle Button -->
+      <div class="theme-option lg:block">
+        <UToggle
+            on-icon="i-heroicons-moon-20-solid"
+            off-icon="i-heroicons-sun-20-solid"
+            :model-value="colorMode.preference === 'dark'"
+            @change="toggleTheme"
+        />
+      </div>
+      <!-- Icons Container -->
+      <div class="actions-container hidden lg:grid">
+        <Icon class="language-toggle-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-heroicons-language"/>
+        <Icon class="rss-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-heroicons-rss"/>
+        <Icon class="github-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-grommet-icons:github"/>
       </div>
     </UContainer>
+
+    <!-- Mobile Navigation Menu -->
+    <div v-show="isMenuOpen"
+         class="nav-extend-container flex flex-col items-center bg-blue-50 bg-opacity-85 dark:bg-black dark:bg-opacity-80 backdrop-blur-lg">
+      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/" @click="toggleMenu">首页</NuxtLink>
+      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/about" @click="toggleMenu">关于</NuxtLink>
+      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/blog" @click="toggleMenu">博客</NuxtLink>
+      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/project" @click="toggleMenu">项目</NuxtLink>
+      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/docs" @click="toggleMenu">文档</NuxtLink>
+      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/reach_me" @click="toggleMenu">联系我</NuxtLink>
+    </div>
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 .nav-container {
-  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
-  width: 100%;
-  color: white;
   padding: 10px;
   z-index: 1;
-  justify-content: center;
-  transition: height 1s;
-}
+  height: 5em;
 
-.nav-inner {
-  align-items: center;
-}
-
-.nav-links {
-  align-items: center;
-  margin-top: 1em;
-
-  .nav-item {
-    text-align: center;
-    flex-grow: 1;
-    margin-top: 0.5em;
+  .nav-inner {
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
   }
 }
 
-.menu-icon-container {
-  margin-left: 20px;
-  cursor: pointer;
-  outline: yellow;
-  color: white;
-  line-height: 20px;
-  padding: 3px;
-  border-radius: 5px;
-  position: relative;
-  display: flex;
-  justify-content: center;
+.actions-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 0.5em;
+  margin-left: 1em;
+  font-size: 1.2em;
 }
 
-.menu-icon-container::before {
-  content: '';
-  display: block;
-  width: 1px;
-  height: 25px;
-  background: white;
-  position: absolute;
-  left: -10px;
-  top: -1px;
+.nav-extend-container {
+  align-items: center;
+  border-radius: 10px;
+  width: 100px;
+  margin: 20px auto 0 auto;
+  height: 13em;
+
+  .nav-item {
+    margin-top: 8px;
+  }
+  .nav-item:first-child {
+    margin-top: 12px;
+  }
 }
 </style>

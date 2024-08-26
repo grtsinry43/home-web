@@ -12,7 +12,8 @@ export default defineNuxtConfig({
     //     ]
     // },
     css: [
-        '@/assets/global.css'
+        '@/assets/global.css',
+        '@/assets/fonts.css'
     ],
     compatibilityDate: '2024-04-03',
     devtools: {enabled: true},
@@ -27,5 +28,13 @@ export default defineNuxtConfig({
     devServer: {
         host: '192.168.123.20',
         port: 3000
+    },
+    nitro: {
+        devProxy: {
+            "/api": {
+                target: "http://localhost:8080", // 这里是接口地址
+                changeOrigin: true,
+            },
+        },
     }
 })

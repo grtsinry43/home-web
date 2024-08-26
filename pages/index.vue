@@ -1,89 +1,133 @@
 <script setup lang="ts">
-const route = useRoute()
+import {ref} from 'vue';
+
+const showAlert = ref(true);
 </script>
 
 <template>
-  <div>
-    <UContainer>
-      <NuxtImg src="~/assets/logo.svg" alt="Nuxt.js Logo" width="50" height="50"/>
-    </UContainer>
-    <UContainer class="text-red-600">
-      <h1>Nuxt Routing set up successfully!</h1>
-      <p>Current route: {{ route.path }}</p>
-      <a href="https://nuxt.com/docs/getting-started/routing" target="_blank">Learn more about Nuxt Routing</a>
-    </UContainer>
-    <div>
-      <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab consequatur cum deleniti dolorem eos ex fugiat,
-        fugit, hic iste iure mollitia quisquam ratione repellendus saepe tempore. Accusantium consectetur hic sint.
+  <UContainer>
+    <div class="alert-container" v-if="showAlert">
+      <UAlert
+          :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'gray', variant: 'link', padded: false }"
+          color="cyan"
+          title="🎉 本站已使用 Nuxt.js 重构！代替了原来的 bootstrap 库，前端源码完全开源，具体可以点击网页右上角 Github 图标移步到仓库（grtsinry43/home-web）查看源码"
+          @close="showAlert = false"
+      />
+    </div>
+    <div class="content-container">
+      <div class="top-left-container">
+        <div class="slogan font-jb-mono">
+          <p>Coding，</p>
+          <p>build a better world</p>
+          <p>together!</p>
+        </div>
+        <span class="slogan-cn">用自己的代码改变世界是一件很酷的事情！</span>
+        <br/>
+        <div class="button-container">
+          <UButton class="btn-item bg-blue-400 text-black dark:bg-blue-800 dark:text-white">前往 Github
+            个人主页
+          </UButton>
+          <UButton color="gray" class="btn-item">
+            前往博客 >
+          </UButton>
+          <UButton color="gray" class="btn-item" disabled>
+            简历（正在完善）
+          </UButton>
+        </div>
       </div>
-      <div>Accusantium autem deserunt dolorum facere laborum necessitatibus, perspiciatis placeat quis repellendus sint
-        tempora voluptates. Assumenda blanditiis debitis deleniti esse illo impedit magnam minus molestias, non
-        perspiciatis quia sed, suscipit, veritatis.
-      </div>
-      <div>Aperiam culpa, dolores, doloribus enim, illum incidunt ipsam natus necessitatibus nobis nostrum odio omnis
-        praesentium quo soluta veritatis. Alias debitis excepturi magni ut? Alias esse itaque iusto magnam, nobis unde.
-      </div>
-      <div>Architecto eligendi labore laborum veniam. Animi consequatur, dolor ea eius error est ex ipsam maiores minima
-        neque nihil nisi non nostrum obcaecati odio, omnis perferendis quae repudiandae rerum tempore vitae?
-      </div>
-      <div>Cumque earum eligendi laboriosam numquam, perspiciatis quae quibusdam. Eum, sed tempora. Aperiam doloribus
-        ipsa ipsum laboriosam mollitia ratione rem? Autem fugit itaque magni minus quae quia quidem rem reprehenderit
-        voluptate.
-      </div>
-      <div>Accusamus aliquid cumque cupiditate dolorum incidunt inventore maiores, necessitatibus omnis pariatur, quam
-        quisquam quo rerum tenetur. At earum ex harum impedit ipsam laudantium nisi odit quo saepe, sit unde vero?
-      </div>
-      <div>Eos, est, ut. Assumenda consequatur dolor eius excepturi facere incidunt labore magnam nobis pariatur
-        praesentium provident, quaerat sequi sunt totam voluptates! Aspernatur assumenda maxime mollitia officia
-        perferendis quaerat ratione repudiandae?
-      </div>
-      <div>Animi assumenda aut autem, consectetur consequuntur culpa cumque delectus doloremque dolores doloribus eius
-        error exercitationem in ipsum iusto magni nulla odio omnis perferendis possimus quaerat rem reprehenderit sed
-        voluptatibus voluptatum?
-      </div>
-      <div>Aperiam architecto consequuntur cum cupiditate, ducimus earum eligendi est facilis fuga harum hic impedit
-        ipsum iusto minima modi molestias neque nobis optio perferendis quia rem rerum saepe tenetur velit voluptate!
-      </div>
-      <div>Alias atque dolorem dolores eius esse itaque magnam nemo nulla odio optio pariatur quaerat quas qui quia,
-        quibusdam quisquam sapiente sed tempore ullam veniam. Atque hic magni nemo nulla placeat.
-      </div>
-      <div>Aperiam commodi eum facere harum, inventore quis repellendus sunt. Ad blanditiis commodi laboriosam minima
-        nobis possimus tempore tenetur veritatis. Blanditiis deleniti dicta iusto perferendis veritatis. Dolores iusto
-        nesciunt quis vero?
-      </div>
-      <div>Commodi, impedit in ipsum odit quaerat ratione! Ad amet architecto mollitia natus necessitatibus optio quam
-        sint, unde veniam. Assumenda eligendi eos labore minima nobis sapiente tenetur ullam. Aliquid, eos vel?
-      </div>
-      <div>Architecto autem blanditiis enim esse excepturi ipsam magnam molestias nisi odio placeat quia quo repellendus
-        similique, sit tempora veritatis voluptate. Corporis deleniti eaque in labore placeat praesentium reiciendis sit
-        voluptate?
-      </div>
-      <div>Amet aperiam consequatur culpa cumque deleniti dolorum expedita in laudantium nemo numquam pariatur quae, qui
-        quod veniam voluptatem! A deleniti doloribus, inventore magnam numquam officiis placeat quae rerum sit
-        voluptatem.
-      </div>
-      <div>Autem consequatur delectus, eaque laborum necessitatibus perspiciatis. Aliquid at consectetur, doloremque
-        dolorum eius, esse fuga ipsam laboriosam magni minus modi nemo odio odit perferendis quaerat quod reiciendis
-        soluta tempora vitae.
-      </div>
-      <div>Accusantium aliquam asperiores deleniti fuga illum impedit obcaecati quod! Architecto atque consectetur
-        incidunt, ipsam laborum libero maxime optio quisquam quos ratione. In iure libero modi, pariatur qui soluta
-        temporibus! Fugit?
-      </div>
-      <div>Alias deserunt dicta doloremque eius ex labore laborum similique tempora tenetur ullam? Accusantium aliquid
-        architecto beatae corporis ea expedita in ipsa neque nihil nostrum numquam odio, sequi tenetur ullam vitae!
-      </div>
-      <div>Adipisci architecto corporis facere, inventore magnam magni minus non quaerat reiciendis sunt veniam
-        voluptates! Alias commodi eaque eveniet exercitationem harum laudantium praesentium quae vel! Deserunt esse ex
-        officiis rem voluptatem!
-      </div>
-      <div>Cum cupiditate delectus distinctio dolore est id possimus praesentium rem repellendus veritatis. Delectus
-        distinctio, dolorum earum eveniet fugit ipsam minima temporibus. Aspernatur beatae consequatur deserunt
-        necessitatibus. Architecto eos labore magnam.
-      </div>
-      <div>Adipisci aperiam consequatur distinctio eligendi, eum iste modi mollitia nesciunt optio quae quasi qui quia
-        quisquam rem repellat rerum saepe sit suscipit ut voluptatem. Ea esse fuga in quisquam totam!
+      <div class="top-right-container">
+        <div class="img-container">
+          <img src="@/assets/home-img.svg" alt="">
+        </div>
       </div>
     </div>
-  </div>
+    <div class="card-container">
+      <UCard class="item-card">
+        <div class="item-card-inner flex flex-col">
+          <span>当前项目</span>
+          <!--<span class="title">GRTSINRY43 的个人主页</span>-->
+          <!--<span class="subtitle">grtsinry43/home-web</span>-->
+          <!--<span class="description"></span>-->
+          <!--<UButton>转到 ></UButton>-->
+        </div>
+      </UCard>
+      <UCard class="item-card">
+        <span>学习进度</span>
+      </UCard>
+      <UCard class="item-card">
+        <span>个人博客</span>
+      </UCard>
+      <UCard class="item-card">
+        <span>关于我</span>
+      </UCard>
+    </div>
+  </UContainer>
 </template>
+
+<style lang="less" scoped>
+.content-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top-left-container {
+  flex: 1 1 400px;
+}
+
+.top-right-container {
+  flex: 1 1 400px;
+}
+
+.slogan {
+  font-weight: bolder;
+  font-size: 40px;
+  letter-spacing: -1px; //减小一下字距
+  line-height: 50px;
+  padding: 30px;
+}
+
+.slogan-cn {
+  font-weight: bolder;
+  padding: 30px;
+  font-size: 16px;
+}
+
+.img-container {
+  margin: 2em auto;
+  width: 60%;
+  text-align: center;
+
+  img {
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+  }
+}
+
+@media (max-width: 800px) {
+  .content-container {
+    flex-direction: column;
+  }
+}
+
+.button-container {
+  margin: 30px;
+
+  .btn-item {
+    margin-right: 1em;
+    margin-bottom: 1em;
+  }
+}
+
+.alert-container {
+  margin: 1em;
+}
+
+.item-card {
+  margin: 1em;
+
+  .item-card-inner {
+    width: 100%;
+  }
+}
+</style>

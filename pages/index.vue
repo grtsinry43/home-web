@@ -4,7 +4,7 @@ import {ref} from 'vue';
 const showAlert = ref(true);
 
 useHead({
-  title: '开发，探索与折腾 - GRTSINTY43的个人主页',
+  title: '学习开发记录 - GRTSINTY43的个人主页',
   meta: [
     {
       name: 'description',
@@ -18,8 +18,8 @@ useHead({
 })
 
 useSeoMeta({
-  title: '开发，探索与折腾 - GRTSINTY43的个人主页',
-  ogTitle: '开发，探索与折腾 - GRTSINTY43的个人主页',
+  title: '学习开发记录 - GRTSINTY43的个人主页',
+  ogTitle: '学习开发记录 - GRTSINTY43的个人主页',
   description: 'GRTSINRY43的个人主页，记录了最近项目，学习进度，折腾历程，以及一些技术分享',
   ogDescription: 'GRTSINRY43的个人主页，记录了最近项目，学习进度，折腾历程，以及一些技术分享',
 })
@@ -45,11 +45,15 @@ useSeoMeta({
         <span class="slogan-cn">用自己的代码改变世界是一件很酷的事情！</span>
         <br/>
         <div class="button-container">
-          <UButton class="btn-item bg-blue-400 text-black dark:bg-blue-800 dark:text-white">前往 Github
+          <UButton to="https://github.com/grtsinry43" target="_blank"
+                   icon="i-grommet-icons:github" style="vertical-align: -5px"
+                   class="btn-item github-link bg-blue-400 text-black dark:bg-blue-800 dark:text-white">前往 Github
             个人主页
           </UButton>
-          <UButton color="gray" class="btn-item">
-            前往博客 >
+          <UButton label="前往学习记录" color="gray" class="btn-item">
+            <template #trailing>
+              <UIcon name="i-heroicons-arrow-right-20-solid" class="w-5 h-5"/>
+            </template>
           </UButton>
           <UButton color="gray" class="btn-item" disabled>
             简历（正在完善）
@@ -75,9 +79,9 @@ useSeoMeta({
       <UCard class="item-card">
         <span>学习进度</span>
       </UCard>
-      <UCard class="item-card">
-        <span>个人博客</span>
-      </UCard>
+      <!--<UCard class="item-card">-->
+      <!--  <span>个人博客</span>-->
+      <!--</UCard>-->
       <UCard class="item-card">
         <span>关于我</span>
       </UCard>
@@ -134,7 +138,7 @@ useSeoMeta({
 .button-container {
   margin: 30px;
 
-  .btn-item {
+  .btn-item, a {
     margin-right: 1em;
     margin-bottom: 1em;
   }

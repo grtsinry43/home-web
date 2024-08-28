@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import {ref} from 'vue'
 
 const colorMode = useColorMode()
 const isMenuOpen = ref(false)
@@ -14,7 +14,8 @@ const toggleMenu = () => {
 </script>
 
 <template>
-  <div class="nav-container fixed w-full bg-opacity-80 bg-blue-50 text-blue-950 dark:bg-opacity-80 dark:bg-black dark:text-white">
+  <div
+      class="nav-container fixed w-full bg-opacity-80 bg-blue-50 text-blue-950 dark:bg-opacity-80 dark:bg-black dark:text-white">
     <UContainer class="flex flex-row items-center justify-between nav-inner">
       <div class="nav-logo">
         <NuxtLink to="/" class="font-bold">Grtsinry43 的个人主页</NuxtLink>
@@ -39,7 +40,9 @@ const toggleMenu = () => {
       <div class="actions-container hidden lg:grid">
         <Icon class="language-toggle-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-heroicons-language"/>
         <Icon class="rss-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-heroicons-rss"/>
-        <Icon class="github-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-grommet-icons:github"/>
+        <a href="https://github.com/grtsinry43/home-web" target="_blank">
+          <Icon class="github-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-grommet-icons:github"/>
+        </a>
       </div>
     </UContainer>
 
@@ -47,11 +50,16 @@ const toggleMenu = () => {
     <div v-show="isMenuOpen"
          class="nav-extend-container flex flex-col items-center bg-blue-50 bg-opacity-85 dark:bg-black dark:bg-opacity-80 backdrop-blur-lg">
       <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/" @click="toggleMenu">首页</NuxtLink>
-      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/about" @click="toggleMenu">关于</NuxtLink>
-      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/blog" @click="toggleMenu">博客</NuxtLink>
-      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/project" @click="toggleMenu">项目</NuxtLink>
-      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/docs" @click="toggleMenu">文档</NuxtLink>
-      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/reach_me" @click="toggleMenu">联系我</NuxtLink>
+      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/about" @click="toggleMenu">关于
+      </NuxtLink>
+      <!--<NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/blog" @click="toggleMenu">博客</NuxtLink>-->
+      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/project" @click="toggleMenu">项目
+      </NuxtLink>
+      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/docs" @click="toggleMenu">文档
+      </NuxtLink>
+      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/reach_me" @click="toggleMenu">
+        联系我
+      </NuxtLink>
     </div>
   </div>
 </template>
@@ -88,6 +96,7 @@ const toggleMenu = () => {
   .nav-item {
     margin-top: 8px;
   }
+
   .nav-item:first-child {
     margin-top: 12px;
   }

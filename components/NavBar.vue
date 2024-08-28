@@ -9,7 +9,8 @@ const toggleTheme = () => {
 </script>
 
 <template>
-  <div class="nav-container fixed w-dvw bg-blue-50 bg-opacity-80 text-blue-950 dark:bg-black dark:text-white dark:bg-opacity-80">
+  <div
+      class="nav-container fixed w-dvw bg-blue-50 bg-opacity-80 text-blue-950 dark:bg-black dark:text-white dark:bg-opacity-80">
     <UContainer class="flex flex-row nav-inner">
       <div class="nav-logo">
         <NuxtLink to="/" class="font-bold">Grtsinry43 的个人主页</NuxtLink>
@@ -17,7 +18,7 @@ const toggleTheme = () => {
       <div class="nav-links flex">
         <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/">首页</NuxtLink>
         <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/about">关于</NuxtLink>
-        <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/blog">博客</NuxtLink>
+        <!--<NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/blog">博客</NuxtLink>-->
         <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/project">项目</NuxtLink>
         <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/docs">文档</NuxtLink>
         <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/reach_me">联系我</NuxtLink>
@@ -33,7 +34,9 @@ const toggleTheme = () => {
       <div class="actions-container">
         <Icon class="language-toggle-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-heroicons-language"/>
         <Icon class="rss-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-heroicons-rss"/>
-        <Icon class="github-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-grommet-icons:github"/>
+        <a href="https://github.com/grtsinry43/home-web" target="_blank">
+          <Icon class="github-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-grommet-icons:github"/>
+        </a>
       </div>
     </UContainer>
   </div>

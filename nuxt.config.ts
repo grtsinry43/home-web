@@ -25,10 +25,10 @@ export default defineNuxtConfig({
         "@formkit/auto-animate",
         "@nuxt/image"
     ],
-    devServer: {
-        host: '192.168.123.20',
-        port: 3000
-    },
+    // devServer: {
+    //     host: '192.168.123.20',
+    //     port: 3000
+    // },
     nitro: {
         devProxy: {
             "/api": {

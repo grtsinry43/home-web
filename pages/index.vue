@@ -46,13 +46,13 @@ useSeoMeta({
         <br/>
         <div class="button-container">
           <UButton to="https://github.com/grtsinry43" target="_blank"
-                   icon="i-grommet-icons:github" style="vertical-align: -5px"
+                   icon="i-grommet-icons:github" style="vertical-align: -4px"
                    class="btn-item github-link bg-blue-400 text-black dark:bg-blue-800 dark:text-white">前往 Github
             个人主页
           </UButton>
           <UButton label="前往学习记录" color="gray" class="btn-item">
             <template #trailing>
-              <UIcon name="i-heroicons-arrow-right-20-solid" class="w-5 h-5"/>
+              <UIcon name="i-heroicons-arrow-right-20-solid" class="w-5 h-5 btn-more-icon"/>
             </template>
           </UButton>
           <UButton color="gray" class="btn-item" disabled>
@@ -70,10 +70,26 @@ useSeoMeta({
       <UCard class="item-card">
         <div class="item-card-inner flex flex-col">
           <span>当前项目</span>
-          <!--<span class="title">GRTSINRY43 的个人主页</span>-->
-          <!--<span class="subtitle">grtsinry43/home-web</span>-->
-          <!--<span class="description"></span>-->
-          <!--<UButton>转到 ></UButton>-->
+          <ProjectPreview
+              name="home-web"
+              description="GRTSINRY43的个人主页，也就是本站的源码，使用 Nuxt.js 重构，实现了前端的 SSR，SEO，以及一些动画效果，响应式设计"
+              detailsUrl="/project"
+          />
+          <ProjectPreview
+              name="54sh-web"
+              description="中南大学校团委官网重构，采用 Bootstrap 响应式设计，实现了新闻展示，视频展示，以及一些动画效果"
+              detailsUrl="/project"
+          />
+          <ProjectPreview
+              name="summer-checkin-2024"
+              description="学校项目，实现学生定位签到，队长查询队员签到情况，以及一些简单的数据分析"
+              detailsUrl="/project"
+          />
+
+          <NuxtLink to="/project" label="查看更多" color="gray" class="btn-more">
+            <span>查看更多</span>
+            <UIcon name="i-heroicons-arrow-right-20-solid" class="w-5 h-5"/>
+          </NuxtLink>
         </div>
       </UCard>
       <UCard class="item-card">
@@ -150,9 +166,35 @@ useSeoMeta({
 
 .item-card {
   margin: 1em;
+}
 
-  .item-card-inner {
-    width: 100%;
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.item-card {
+  flex: 1 1 calc(33.333% - 1em);
+  margin: 0.5em;
+}
+
+@media (max-width: 1200px) {
+  .item-card {
+    flex: 1 1 calc(50% - 1em);
   }
+}
+
+@media (max-width: 800px) {
+  .item-card {
+    flex: 1 1 100%;
+  }
+}
+
+.btn-more {
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 </style>

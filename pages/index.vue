@@ -1,29 +1,32 @@
 <script setup lang="ts">
 import {ref} from 'vue';
+import {useI18n} from 'vue-i18n';
 
 const showAlert = ref(true);
+const {t, locale} = useI18n();
 
 useHead({
-  title: '学习开发记录 - GRTSINTY43的个人主页',
+  title: t('meta.title'),
   meta: [
     {
       name: 'description',
-      content: 'GRTSINRY43的个人主页，记录了最近项目，学习进度，折腾历程，以及一些技术分享'
+      content: t('meta.description'),
     },
     {
       name: 'keywords',
-      content: 'GRTSINRY43, 个人主页, 开发, 折腾, 探索'
+      content: t('meta.keywords'),
     }
   ]
 })
 
 useSeoMeta({
-  title: '学习开发记录 - GRTSINTY43的个人主页',
-  ogTitle: '学习开发记录 - GRTSINTY43的个人主页',
-  description: 'GRTSINRY43的个人主页，记录了最近项目，学习进度，折腾历程，以及一些技术分享',
-  ogDescription: 'GRTSINRY43的个人主页，记录了最近项目，学习进度，折腾历程，以及一些技术分享',
+  title: t('meta.title'),
+  ogTitle: t('meta.title'),
+  description: t('meta.description'),
+  ogDescription: t('meta.description'),
 })
 </script>
+
 
 <template>
   <UContainer>
@@ -31,32 +34,32 @@ useSeoMeta({
       <UAlert
           :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'gray', variant: 'link', padded: false }"
           color="cyan"
-          title="🎉 本站已使用 Nuxt.js 重构！代替了原来的 bootstrap 库，前端源码完全开源，具体可以点击网页右上角 Github 图标移步到仓库（grtsinry43/home-web）查看源码"
+          :title="t('alert.title')"
           @close="showAlert = false"
       />
     </div>
     <div class="content-container">
       <div class="top-left-container">
         <div class="slogan font-jb-mono">
-          <p>Coding，</p>
+          <p>Coding,</p>
           <p>build a better world</p>
           <p>together!</p>
         </div>
-        <span class="slogan-cn">用自己的代码改变世界是一件很酷的事情！</span>
+        <span class="slogan-cn" v-if="locale === 'zh'">{{ t('slogan.cn') }}</span>
         <br/>
         <div class="button-container">
           <UButton to="https://github.com/grtsinry43" target="_blank"
                    icon="i-grommet-icons:github" style="vertical-align: -4px"
-                   class="btn-item github-link bg-blue-400 text-black dark:bg-blue-800 dark:text-white">前往 Github
-            个人主页
+                   class="btn-item github-link bg-blue-400 text-black dark:bg-blue-800 dark:text-white">
+            {{ t('buttons.github') }}
           </UButton>
-          <UButton label="前往学习记录" color="gray" class="btn-item">
+          <UButton :label="t('buttons.learningLog')" color="gray" class="btn-item">
             <template #trailing>
               <UIcon name="i-heroicons-arrow-right-20-solid" class="w-5 h-5 btn-more-icon"/>
             </template>
           </UButton>
           <UButton color="gray" class="btn-item" disabled>
-            简历（正在完善）
+            {{ t('buttons.resume') }}
           </UButton>
         </div>
       </div>
@@ -69,41 +72,38 @@ useSeoMeta({
     <div class="card-container">
       <UCard class="item-card">
         <div class="item-card-inner flex flex-col">
-          <span>当前项目</span>
+          <span>{{ t('cards.currentProjects') }}</span>
           <ProjectPreview
               name="home-web"
-              description="GRTSINRY43的个人主页，也就是本站的源码，使用 Nuxt.js 重构，实现了前端的 SSR，SEO，以及一些动画效果，响应式设计"
+              :description="t('projects.homeWeb.description')"
               detailsUrl="/project"
           />
           <ProjectPreview
               name="54sh-web"
-              description="中南大学校团委官网重构，采用 Bootstrap 响应式设计，实现了新闻展示，视频展示，以及一些动画效果"
+              :description="t('projects.54shWeb.description')"
               detailsUrl="/project"
           />
           <ProjectPreview
               name="summer-checkin-2024"
-              description="学校项目，实现学生定位签到，队长查询队员签到情况，以及一些简单的数据分析"
+              :description="t('projects.summerCheckin.description')"
               detailsUrl="/project"
           />
-
           <NuxtLink to="/project" label="查看更多" color="gray" class="btn-more">
-            <span>查看更多</span>
+            <span>{{ t('buttons.seeMore') }}</span>
             <UIcon name="i-heroicons-arrow-right-20-solid" class="w-5 h-5"/>
           </NuxtLink>
         </div>
       </UCard>
       <UCard class="item-card">
-        <span>学习进度</span>
+        <span>{{ t('cards.learningProgress') }}</span>
       </UCard>
-      <!--<UCard class="item-card">-->
-      <!--  <span>个人博客</span>-->
-      <!--</UCard>-->
       <UCard class="item-card">
-        <span>关于我</span>
+        <span>{{ t('cards.aboutMe') }}</span>
       </UCard>
     </div>
   </UContainer>
 </template>
+
 
 <style lang="less" scoped>
 .content-container {

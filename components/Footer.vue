@@ -38,7 +38,7 @@ onMounted(() => {
 
 <template>
   <div class="footer-container bg-opacity-25 bg-[#ccc] dark:bg-[black] dark:bg-opacity-25">
-    <p class="m-2 text-[#666666] dark:text-[#cccccc]">本站源码最后更新： <span class="ml-4 mr-4">{{ commitDate }}</span>
+    <p class="m-2 text-[#666666] dark:text-[#cccccc] font-jb-mono">本站源码最后更新:<span class="ml-4 mr-4">{{ commitDate }}</span>
       <strong>{{ commitHash }}</strong>
       <span class="ml-4">{{ commitMessage }}</span>
     </p>

@@ -12,7 +12,7 @@ const props = defineProps<{
   <UCard class="project-preview-container">
     <h3 class="project-preview-title">{{ name }}</h3>
     <p class="project-preview-description">{{ description }}</p>
-    <UButton :to="detailsUrl" label="查看详情" color="gray" class="btn-item">
+    <UButton :to="detailsUrl" :label="$t('detail')" color="gray" class="btn-item">
       <template #trailing>
         <UIcon name="i-heroicons-arrow-right-20-solid" class="w-5 h-5"/>
       </template>

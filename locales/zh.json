@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "title": "学习开发记录 - GRTSINTY43的个人主页",
+    "description": "GRTSINRY43的个人主页，记录了最近项目，学习进度，折腾历程，以及一些技术分享。",
+    "keywords": "GRTSINRY43, 个人主页, 开发, 折腾, 探索"
+  },
+  "alert": {
+    "title": "🎉 本站已使用 Nuxt.js 重构！代替了原来的 bootstrap 库，前端源码完全开源，具体可以点击网页右上角 Github 图标移步到仓库（grtsinry43/home-web）查看源码"
+  },
+  "slogan": {
+    "cn": "用自己的代码改变世界是一件很酷的事情！"
+  },
+  "buttons": {
+    "github": "前往 Github 个人主页",
+    "learningLog": "前往学习记录",
+    "resume": "简历（正在完善）",
+    "seeMore": "查看更多"
+  },
+  "cards": {
+    "currentProjects": "当前项目",
+    "learningProgress": "学习进度",
+    "aboutMe": "关于我"
+  },
+  "projects": {
+    "homeWeb": {
+      "description": "GRTSINRY43的个人主页，也就是本站的源码，使用 Nuxt.js 重构，实现了前端的 SSR，SEO，以及一些动画效果，响应式设计。"
+    },
+    "54shWeb": {
+      "description": "中南大学校团委官网重构，采用 Bootstrap 响应式设计，实现了新闻展示，视频展示，以及一些动画效果。"
+    },
+    "summerCheckin": {
+      "description": "学校项目，实现学生定位签到，队长查询队员签到情况，以及一些简单的数据分析。"
+    }
+  },
+  "homePageTitle": "Grtsinry43 的个人主页",
+  "home": "首页",
+  "about": "关于",
+  "blog": "博客",
+  "project": "项目",
+  "docs": "文档",
+  "contactMe": "联系我",
+  "privateProject": "组织内部使用，为 private 项目",
+  "internalOnly": "项目不再部署或仅限于内部使用",
+  "techStack": "技术栈",
+  "currentProgress": "当前开发进度",
+  "newProject": "新建项目",
+  "basicFunctionality": "基础功能",
+  "coreIssuesResolved": "核心难点解决",
+  "projectComplete": "完结撒花",
+  "lastCommit": "最后一次提交",
+  "detail": "查看详情"
+}

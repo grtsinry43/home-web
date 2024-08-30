@@ -2,8 +2,9 @@
 import {ref} from 'vue';
 
 const showAlert = ref(true);
-const title = ref('敬请期待');
-const notification = ref('本站内容还在不断开发和完善中哦，具体也可以参考 Github 的提交历史，期待与你见面');
+const {t, locale} = useI18n();
+const title = ref(locale.value === 'en' ? 'Coming Soon' : '敬请期待');
+const notification = ref(locale.value === 'en' ? 'The content of this site is still under development and improvement, you can also refer to the commit history of Github, looking forward to meeting you' : '本站内容还在不断开发和完善中哦，具体也可以参考 Github 的提交历史，期待与你见面');
 // const resp = await $fetch('/api/notification');
 // console.log(resp);
 // if (resp.code === 0) {

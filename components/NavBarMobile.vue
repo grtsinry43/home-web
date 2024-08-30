@@ -3,6 +3,7 @@ import {ref} from 'vue'
 
 const colorMode = useColorMode()
 const isMenuOpen = ref(false)
+const localePath = useLocalePath()
 
 const toggleTheme = () => {
   colorMode.preference = colorMode.preference === 'dark' ? 'light' : 'dark'
@@ -18,7 +19,7 @@ const toggleMenu = () => {
       class="nav-container fixed w-full bg-opacity-80 bg-blue-50 text-blue-950 dark:bg-opacity-80 dark:bg-black dark:text-white">
     <UContainer class="flex flex-row items-center justify-between nav-inner">
       <div class="nav-logo">
-        <NuxtLink to="/" class="font-bold">Grtsinry43 的个人主页</NuxtLink>
+        <NuxtLink :to="localePath('/')" class="font-bold">{{ $t('homePageTitle') }}</NuxtLink>
       </div>
       <!-- Toggle Button for Mobile Menu -->
       <UButton class="lg:hidden bg-opacity-0 dark:bg-opacity-0" @click="toggleMenu"
@@ -49,16 +50,24 @@ const toggleMenu = () => {
     <!-- Mobile Navigation Menu -->
     <div v-show="isMenuOpen"
          class="nav-extend-container flex flex-col items-center bg-blue-50 bg-opacity-85 dark:bg-black dark:bg-opacity-80 backdrop-blur-lg">
-      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/" @click="toggleMenu">首页</NuxtLink>
-      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/about" @click="toggleMenu">关于
+      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" :to="localePath('/')">{{
+          $t('home')
+        }}
       </NuxtLink>
-      <!--<NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/blog" @click="toggleMenu">博客</NuxtLink>-->
-      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/project" @click="toggleMenu">项目
+      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" :to="localePath('/about')">{{
+          $t('about')
+        }}
       </NuxtLink>
-      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/docs" @click="toggleMenu">文档
+      <!--<NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" :to="$i18n.localePath('/blog')">{{ $t('blog') }}</NuxtLink>-->
+      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" :to="localePath('/project')">
+        {{ $t('project') }}
       </NuxtLink>
-      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/reach_me" @click="toggleMenu">
-        联系我
+      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" :to="localePath('/docs')">{{
+          $t('docs')
+        }}
+      </NuxtLink>
+      <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" :to="localePath('/reach_me')">
+        {{ $t('contactMe') }}
       </NuxtLink>
     </div>
   </div>

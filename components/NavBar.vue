@@ -1,27 +1,32 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 
-const colorMode = useColorMode()
+const { locale } = useI18n();
+const localePath = useLocalePath();
+const colorMode = useColorMode();
 
 const toggleTheme = () => {
-  // 切换主题
-  colorMode.preference = colorMode.preference === 'dark' ? 'light' : 'dark'
-}
+  colorMode.preference = colorMode.preference === 'dark' ? 'light' : 'dark';
+};
+
+const toggleLocale = () => {
+  locale.value = locale.value === 'en' ? 'zh' : 'en';
+};
 </script>
 
 <template>
-  <div
-      class="nav-container fixed w-dvw bg-blue-50 bg-opacity-80 text-blue-950 dark:bg-black dark:text-white dark:bg-opacity-80">
+  <div class="nav-container fixed w-dvw bg-blue-50 bg-opacity-80 text-blue-950 dark:bg-black dark:text-white dark:bg-opacity-80">
     <UContainer class="flex flex-row nav-inner">
       <div class="nav-logo">
-        <NuxtLink to="/" class="font-bold">Grtsinry43 的个人主页</NuxtLink>
+        <NuxtLink :to="localePath('/')" class="font-bold">{{ $t('homePageTitle') }}</NuxtLink>
       </div>
       <div class="nav-links flex">
-        <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/">首页</NuxtLink>
-        <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/about">关于</NuxtLink>
-        <!--<NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/blog">博客</NuxtLink>-->
-        <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/project">项目</NuxtLink>
-        <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/docs">文档</NuxtLink>
-        <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" to="/reach_me">联系我</NuxtLink>
+        <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" :to="localePath('/')">{{ $t('home') }}</NuxtLink>
+        <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" :to="localePath('/about')">{{ $t('about') }}</NuxtLink>
+        <!--<NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" :to="$i18n.localePath('/blog')">{{ $t('blog') }}</NuxtLink>-->
+        <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" :to="localePath('/project')">{{ $t('project') }}</NuxtLink>
+        <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" :to="localePath('/docs')">{{ $t('docs') }}</NuxtLink>
+        <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" :to="localePath('/reach_me')">{{ $t('contactMe') }}</NuxtLink>
       </div>
       <div class="theme-option">
         <UToggle
@@ -32,7 +37,7 @@ const toggleTheme = () => {
         />
       </div>
       <div class="actions-container">
-        <Icon class="language-toggle-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-heroicons-language"/>
+        <Icon class="language-toggle-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-heroicons-language" @click="toggleLocale"/>
         <Icon class="rss-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-heroicons-rss"/>
         <a href="https://github.com/grtsinry43/home-web" target="_blank">
           <Icon class="github-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-grommet-icons:github"/>
@@ -41,6 +46,7 @@ const toggleTheme = () => {
     </UContainer>
   </div>
 </template>
+
 
 <style lang="less" scoped>
 .nav-container {

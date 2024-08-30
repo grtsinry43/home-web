@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "title": "Development Learning Record - GRTSINTY43's Personal Homepage",
+    "description": "GRTSINRY43's personal homepage, documenting recent projects, learning progress, tinkering journey, and some technical sharing.",
+    "keywords": "GRTSINRY43, personal homepage, development, tinkering, exploration"
+  },
+  "alert": {
+    "title": "🎉 This site has been restructured with Nuxt.js! It replaced the original Bootstrap library. The front-end source code is completely open-source. You can click the GitHub icon at the top right of the page to view the source code (grtsinry43/home-web)."
+  },
+  "slogan": {
+    "cn": "It's cool to change the world with your own code!"
+  },
+  "buttons": {
+    "github": "Go to GitHub Homepage",
+    "learningLog": "Go to Learning Log",
+    "resume": "Resume (Under Improvement)",
+    "seeMore": "See More"
+  },
+  "cards": {
+    "currentProjects": "Current Projects",
+    "learningProgress": "Learning Progress",
+    "aboutMe": "About Me"
+  },
+  "projects": {
+    "homeWeb": {
+      "description": "GRTSINRY43's personal homepage, the source code of this site, rebuilt using Nuxt.js, implementing front-end SSR, SEO, some animation effects, and responsive design."
+    },
+    "54shWeb": {
+      "description": "Reconstruction of the Central South University Youth League Committee website, using Bootstrap responsive design, implementing news display, video display, and some animation effects."
+    },
+    "summerCheckin": {
+      "description": "A school project that enables students to check in via positioning, allows captains to check team members' attendance, and provides some basic data analysis."
+    }
+  },
+  "homePageTitle": "Grtsinry43's Personal Homepage",
+  "home": "Home",
+  "about": "About Me",
+  "blog": "Blog",
+  "project": "Projects",
+  "docs": "Documentation",
+  "contactMe": "Contact",
+  "privateProject": "Internal use only, for private projects",
+  "internalOnly": "Not deployed or internal use only",
+  "techStack": "Tech Stack",
+  "currentProgress": "Current Progress",
+  "newProject": "New Project",
+  "basicFunctionality": "Basic Functionality",
+  "coreIssuesResolved": "Core Issues Resolved",
+  "projectComplete": "Project Complete",
+  "lastCommit": "Last Commit",
+  "detail": "View Details"
+}

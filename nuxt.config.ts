@@ -23,7 +23,8 @@ export default defineNuxtConfig({
         "@nuxtjs/sitemap",
         '@nuxtjs/color-mode',
         "@formkit/auto-animate",
-        "@nuxt/image"
+        "@nuxt/image",
+        '@nuxtjs/robots',
     ],
     // devServer: {
     //     host: '192.168.123.20',
@@ -44,4 +45,19 @@ export default defineNuxtConfig({
             viewport: 'width=device-width, initial-scale=1',
         }
     },
+    site: {
+        url: 'https://www.grtsinry43.com',
+    },
+    sitemap: {
+        hostname: 'https://www.grtsinry43.com',
+        gzip: true,
+    },
+    i18n: {
+        vueI18n: './i18n.config.ts',
+        locales: [
+            { code: 'en', iso: 'en-US', name: 'English' },
+            { code: 'zh', iso: 'zh-CN', name: '中文' }
+        ],
+        defaultLocale: 'zh',
+    }
 })

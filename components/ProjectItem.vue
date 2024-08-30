@@ -59,36 +59,36 @@ onMounted(() => {
           <a :href="githubUrl" class="mr-8 hover:text-blue-400 dark:hover:text-blue-600">
             <UIcon name="i-grommet-icons:github" class="w-5 h-5 align-middle"/>
             <span class="ml-2" v-if="githubUrl !== ''">{{ parseGithubUrl(githubUrl) }}</span>
-            <span class="ml-2" v-else>组织内部使用，为 private 项目</span>
+            <span class="ml-2" v-else>{{ $t('privateProject') }}</span>
           </a>
           <a :href="deployUrl" class="hover:text-blue-400 dark:hover:text-blue-600">
             <UIcon name="i-heroicons:globe-alt" class="w-5 h-5 align-middle"/>
             <span class="ml-2" v-if="deployUrl !== ''">{{ deployUrl }}</span>
-            <span class="ml-2" v-else>项目不再部署或仅限于内部使用</span>
+            <span class="ml-2" v-else>{{ $t('internalOnly') }}</span>
           </a>
         </div>
         <div class="tech-stack">
-          <span>技术栈：</span>
+          <span>{{ $t('techStack') }}：</span>
           <span v-for="(tech, index) in techStack.split(',')" :key="index"
                 class="tech-item bg-[#f0f0f0] dark:bg-[#242424]">
                 {{ tech.trim() }}
               </span>
         </div>
         <div class="progress">
-          <span>当前开发进度</span>
+          <span>{{ $t('currentProgress') }}</span>
           <UProgress :value="progress" class="progress-bar">
             <template #indicator="{ percent }">
               <div class="text-right" :style="{ width: `${percent}%` }">
-                <span v-if="progress <= 10" class="text-blue-500">新建项目👀 {{ progress }}%</span>
-                <span v-else-if="progress <= 40" class="text-amber-500">基础功能... {{ progress }}%</span>
-                <span v-else-if="progress <= 80" class="text-orange-500">核心难点解决... {{ progress }}%</span>
-                <span v-else class="text-red-500 font-bold">完结撒花！🎉</span>
+                <span v-if="progress <= 10" class="text-blue-500">{{ $t('newProject') }} 👀 {{ progress }}%</span>
+                <span v-else-if="progress <= 40" class="text-amber-500">{{ $t('basicFunctionality') }}... {{ progress }}%</span>
+                <span v-else-if="progress <= 80" class="text-orange-500">{{ $t('coreIssuesResolved') }}... {{ progress }}%</span>
+                <span v-else class="text-red-500 font-bold">{{ $t('projectComplete') }} 🎉</span>
               </div>
             </template>
           </UProgress>
         </div>
         <div v-if="githubUrl !== ''" class="commit-info">
-          最后一次提交: <span class="ml-4 mr-4">{{ commitDate }}</span>
+          {{ $t('lastCommit') }}: <span class="ml-4 mr-4">{{ commitDate }}</span>
           <strong>{{ commitHash }}</strong>
           <span class="ml-4">{{ commitMessage }}</span>
         </div>
@@ -96,6 +96,7 @@ onMounted(() => {
     </UCard>
   </div>
 </template>
+
 <style scoped>
 .project-item-container {
   margin: 1em;

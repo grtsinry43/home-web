@@ -1,6 +1,19 @@
 <script setup lang="ts">
+import {useI18n} from "vue-i18n";
+
+const {t: $t} = useI18n();
 useHead({
-  title: '联系我｜GRTSINTY43的个人主页',
+  title: `${$t('contactMe')} | ${$t('homePageTitle')}`,
+  meta: [
+    {
+      name: 'description',
+      content: $t('meta.description'),
+    },
+    {
+      name: 'keywords',
+      content: $t('meta.keywords'),
+    }
+  ]
 })
 </script>
 

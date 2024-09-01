@@ -1,34 +1,38 @@
 <script setup lang="ts">
 import {ref, defineComponent, onMounted} from 'vue';
+import {useI18n} from "vue-i18n";
+
+const {t: $t} = useI18n();
+const {locale} = useI18n();
 
 const wordItem = ref<HTMLCollection | null>(null);
 let intervalId: number | null = null;
 
 const words = ref([
-  {text: '左家垅男子技校（）😰', size: 40},
-  {text: 'Vue.js', size: 40},
-  {text: 'Vue.js', size: 40},
-  {text: 'Java受害者（', size: 30},
-  {text: 'Spring Boot', size: 20},
-  {text: 'HTML5', size: 20},
-  {text: 'CSS', size: 20},
-  {text: 'JavaScript', size: 20},
-  {text: 'Python', size: 20},
-  {text: 'Cpp', size: 20},
-  {text: 'Archlinux重度用户', size: 40},
-  {text: '主力前端，后端依！托！😭', size: 40},
-  {text: 'Arcaea 玩家，源神，启动！！😡', size: 25},
-  {text: 'Phigros玩家', size: 25},
-  {text: '对立，我的对立~😋', size: 25},
-  {text: '音游', size: 35},
-  {text: '视频剪辑', size: 15},
-  {text: 'Coding', size: 20},
-  {text: '前端开发', size: 50},
-  {text: '后端开发', size: 40},
-  {text: '原！神！', size: 20},
-  {text: '崩坏 星穹铁道', size: 20},
-  {text: '大二萌新', size: 20},
-  {text: '成分复杂👀', size: 35},
+  {text: $t('word1'), size: 40},
+  {text: $t('word2'), size: 40},
+  {text: $t('word3'), size: 40},
+  {text: $t('word4'), size: 30},
+  {text: $t('word5'), size: 20},
+  {text: $t('word6'), size: 30},
+  {text: $t('word7'), size: 30},
+  {text: $t('word8'), size: 30},
+  {text: $t('word9'), size: 30},
+  {text: $t('word10'), size: 20},
+  {text: $t('word11'), size: 40},
+  {text: $t('word12'), size: 40},
+  {text: $t('word13'), size: 25},
+  {text: $t('word14'), size: 25},
+  {text: $t('word15'), size: 25},
+  {text: $t('word16'), size: 35},
+  {text: $t('word17'), size: 15},
+  {text: $t('word18'), size: 20},
+  {text: $t('word19'), size: 50},
+  {text: $t('word20'), size: 40},
+  {text: $t('word21'), size: 20},
+  {text: $t('word22'), size: 20},
+  {text: $t('word23'), size: 20},
+  {text: $t('word24'), size: 35}
 ]);
 
 const getInitialWordStyle = (word: { text: string; size: number }) => {
@@ -80,6 +84,36 @@ onUnmounted(() => {
   if (intervalId !== null) {
     clearInterval(intervalId);
   }
+});
+
+//这里如果locale被修改，就需要重新获取翻译
+watch(() => locale.value, () => {
+  words.value = [
+    {text: $t('word1'), size: 40},
+    {text: $t('word2'), size: 40},
+    {text: $t('word3'), size: 40},
+    {text: $t('word4'), size: 30},
+    {text: $t('word5'), size: 20},
+    {text: $t('word6'), size: 20},
+    {text: $t('word7'), size: 30},
+    {text: $t('word8'), size: 30},
+    {text: $t('word9'), size: 30},
+    {text: $t('word10'), size: 30},
+    {text: $t('word11'), size: 40},
+    {text: $t('word12'), size: 40},
+    {text: $t('word13'), size: 25},
+    {text: $t('word14'), size: 25},
+    {text: $t('word15'), size: 25},
+    {text: $t('word16'), size: 35},
+    {text: $t('word17'), size: 15},
+    {text: $t('word18'), size: 20},
+    {text: $t('word19'), size: 50},
+    {text: $t('word20'), size: 40},
+    {text: $t('word21'), size: 20},
+    {text: $t('word22'), size: 20},
+    {text: $t('word23'), size: 20},
+    {text: $t('word24'), size: 35}
+  ];
 });
 
 </script>

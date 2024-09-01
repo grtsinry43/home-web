@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import {ref} from 'vue'
+import {useI18n} from "vue-i18n";
 
+const { locale } = useI18n();
 const colorMode = useColorMode()
 const isMenuOpen = ref(false)
 const localePath = useLocalePath()
@@ -12,6 +14,10 @@ const toggleTheme = () => {
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
 }
+
+const toggleLocale = () => {
+  locale.value = locale.value === 'en' ? 'zh' : 'en';
+};
 </script>
 
 <template>
@@ -39,7 +45,7 @@ const toggleMenu = () => {
       </div>
       <!-- Icons Container -->
       <div class="actions-container hidden lg:grid">
-        <Icon class="language-toggle-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-heroicons-language"/>
+        <Icon class="language-toggle-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-heroicons-language" @click="toggleLocale"/>
         <Icon class="rss-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-heroicons-rss"/>
         <a href="https://github.com/grtsinry43/home-web" target="_blank">
           <Icon class="github-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-grommet-icons:github"/>

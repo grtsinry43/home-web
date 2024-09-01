@@ -94,11 +94,33 @@ useSeoMeta({
           </NuxtLink>
         </div>
       </UCard>
-      <UCard class="item-card">
+      <UCard class="item-card overflow-y-auto">
         <span>{{ t('cards.learningProgress') }}</span>
+        <LearnProgress name="Vue.js" description="我的首个接触的前端框架，对我有非常深远的影响和帮助，
+        从三件套的简陋页面到现在的完整项目，可以说Vue.js是我前端框架路程的起点，有了它才有了后来的React和Angular等等，
+        Next.js和Nuxt.js等等，自己完成项目的成就感还是很大的，希望自己能够继续努力，不断学习，不断进步。" :progress="99"/>
+        <LearnProgress name="React"
+                       description="React是我在Vue.js之后接触的第二个前端框架，不同于Vue的模板语法，React使用的JSX语法代表了一种新的编程思维。"
+                       :progress="80"/>
+        <LearnProgress name="Bootstrap"
+                       description="这个框架的学习始于一次偶然的项目，简单的类名就可以实现很多功能，更有非常舒服的响应式"
+                       :progress="60"/>
+        <LearnProgress name="Spring Boot" description="由于Java是我的主语言，所以Spring Boot是我后端框架的首选，
+        但是说实话其复杂程度和难度远远超过了前端框架，后端学习对我来说路还很长，现在只是一些简单的业务逻辑，
+        未来能继续深入学习的话，希望能够学习到更多的知识。" :progress="40"/>
+        <LearnProgress name="Python"
+                       description="Python语言的语法一直不习惯，但是正好专业方向需要，并且其强大的生态系统和封装便捷性是其他语言无法比拟的"
+                       :progress="80"/>
+        <LearnProgress name="Docker"
+                       description="目前还只是会用一些简单的命令，但是Docker的强大和便捷性是不言而喻的，未来希望能够深入学习"
+                       :progress="40"/>
+        <LearnProgress name="SQL"
+                       description="SQL是数据库的基础，虽然常用的语法没问题，但是真的已经写累了，目前很多都是在用框架"
+                       :progress="90"/>
       </UCard>
-      <UCard class="item-card">
+      <UCard class="item-card about-me-card">
         <span>{{ t('cards.aboutMe') }}</span>
+        <AboutMe/>
       </UCard>
     </div>
   </UContainer>
@@ -196,5 +218,11 @@ useSeoMeta({
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+
+.about-me-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 500px;
 }
 </style>

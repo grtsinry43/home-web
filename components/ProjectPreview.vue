@@ -10,8 +10,8 @@ const props = defineProps<{
 
 <template>
   <UCard class="project-preview-container">
-    <h3 class="project-preview-title">{{ name }}</h3>
-    <p class="project-preview-description">{{ description }}</p>
+    <h3 class="project-preview-title font-jb-mono">{{ name }}</h3>
+    <p class="project-preview-description text-[#666666] dark:text-[#cccccc]">{{ description }}</p>
     <UButton :to="detailsUrl" :label="$t('detail')" color="gray" class="btn-item">
       <template #trailing>
         <UIcon name="i-heroicons-arrow-right-20-solid" class="w-5 h-5"/>
@@ -21,6 +21,7 @@ const props = defineProps<{
 </template>
 
 <style lang="less" scoped>
+
 .project-preview-container {
   margin: 1em 0;
   transition: all 0.5s;
@@ -33,6 +34,10 @@ const props = defineProps<{
   }
 }
 
+.dark .project-preview-container:hover {
+  background: linear-gradient(30deg, rgba(102, 126, 234, 1) 0%, rgba(118, 75, 162, 1) 100%);
+}
+
 .project-preview-title {
   font-size: 1.5em;
   font-weight: bold;
@@ -41,7 +46,6 @@ const props = defineProps<{
 
 .project-preview-description {
   font-size: 1em;
-  color: #666;
   margin-bottom: 1em;
 }
 

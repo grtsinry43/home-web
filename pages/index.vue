@@ -25,6 +25,21 @@ useSeoMeta({
   description: t('meta.description'),
   ogDescription: t('meta.description'),
 })
+
+const friends = ref([
+  {
+    name: 'Barkure',
+    avatar: 'https://barku.re/assets/icon.svg',
+    description: 'Hello! I\'m Barkure.',
+    link: 'https://barku.re/'
+  },
+  {
+    name: 'OctAutumn',
+    avatar: 'https://www.octautumn.cn/upload/logo.png',
+    description: 'Oct\'s CyberHouse',
+    link: 'https://www.octautumn.cn/'
+  }
+])
 </script>
 
 
@@ -122,6 +137,19 @@ useSeoMeta({
         <span>{{ t('cards.aboutMe') }}</span>
         <AboutMe/>
       </UCard>
+    </div>
+    <div class="friend-container">
+      <span class="font-bold">{{ t('friends') }}</span>
+      <div class="friend-list">
+        <FriendCard
+            v-for="friend in friends"
+            :key="friend.name"
+            :name="friend.name"
+            :avatar="friend.avatar"
+            :description="friend.description"
+            :link="friend.link"
+        />
+      </div>
     </div>
   </UContainer>
 </template>
@@ -224,5 +252,21 @@ useSeoMeta({
   position: relative;
   overflow: hidden;
   min-height: 500px;
+}
+
+.friend-container {
+  margin: 1em;
+}
+
+.friend-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+@media (max-width: 1200px) {
+  .friend-list {
+    flex-direction: column;
+  }
 }
 </style>

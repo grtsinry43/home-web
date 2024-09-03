@@ -39,6 +39,12 @@
   "project": "Projects",
   "docs": "Documentation",
   "contactMe": "Contact",
+  "friends": "Friends",
+  "footer": {
+    "title": "GRTSINRY43's Personal Homepage",
+    "description": "This site is GRTSINRY43's personal homepage, documenting recent projects, learning progress, tinkering journey, and some technical sharing."
+  },
+  "visit": "Visit",
   "privateProject": "Internal use only, for private projects",
   "internalOnly": "Not deployed or internal use only",
   "techStack": "Tech Stack",

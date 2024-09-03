@@ -39,6 +39,12 @@
   "project": "项目",
   "docs": "文档",
   "contactMe": "联系我",
+  "friends": "友情链接",
+  "footer": {
+    "title": "GRTSINRY43的个人主页",
+    "description": "本站点是 GRTSINRY43 的个人主页，记录了最近项目，学习进度，折腾历程，以及一些技术分享。"
+  },
+  "visit": "访问",
   "privateProject": "组织内部使用，为 private 项目",
   "internalOnly": "项目不再部署或仅限于内部使用",
   "techStack": "技术栈",

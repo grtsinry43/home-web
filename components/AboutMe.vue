@@ -1,75 +1,84 @@
-<script setup lang="ts">
-import {ref, defineComponent, onMounted} from 'vue';
-import {useI18n} from "vue-i18n";
+<template>
+  <div class="about-me-word-cloud-container">
+    <div class="title font-jb-mono">👋{{ $t('aboutMeTitle') }}</div>
+    <div v-for="(word, index) in words" :key="index"
+         class="word font-jb-mono"
+         :style="getInitialWordStyle(word.text, word.size, word.color)"
+         ref="wordItem">
+      {{ word.text }}
+    </div>
+  </div>
+</template>
 
-const {t: $t} = useI18n();
-const {locale} = useI18n();
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted, watch } from 'vue';
+import { useI18n } from "vue-i18n";
+
+const { t: $t } = useI18n();
+const { locale } = useI18n();
 
 const wordItem = ref<HTMLCollection | null>(null);
 let intervalId: number | null = null;
 
 const words = ref([
-  {text: $t('word1'), size: 40},
-  {text: $t('word2'), size: 40},
-  {text: $t('word3'), size: 40},
-  {text: $t('word4'), size: 30},
-  {text: $t('word5'), size: 20},
-  {text: $t('word6'), size: 30},
-  {text: $t('word7'), size: 30},
-  {text: $t('word8'), size: 30},
-  {text: $t('word9'), size: 30},
-  {text: $t('word10'), size: 20},
-  {text: $t('word11'), size: 40},
-  {text: $t('word12'), size: 40},
-  {text: $t('word13'), size: 25},
-  {text: $t('word14'), size: 25},
-  {text: $t('word15'), size: 25},
-  {text: $t('word16'), size: 35},
-  {text: $t('word17'), size: 15},
-  {text: $t('word18'), size: 20},
-  {text: $t('word19'), size: 50},
-  {text: $t('word20'), size: 40},
-  {text: $t('word21'), size: 20},
-  {text: $t('word22'), size: 20},
-  {text: $t('word23'), size: 20},
-  {text: $t('word24'), size: 35}
+  { text: $t('word1'), size: 40, color: '#FF5733' },
+  { text: $t('word2'), size: 40, color: '#33FF57' },
+  { text: $t('word3'), size: 40, color: '#3357FF' },
+  { text: $t('word4'), size: 30, color: '#F1C40F' },
+  { text: $t('word5'), size: 20, color: '#8E44AD' },
+  { text: $t('word6'), size: 30, color: '#E67E22' },
+  { text: $t('word7'), size: 30, color: '#2ECC71' },
+  { text: $t('word8'), size: 30, color: '#E74C3C' },
+  { text: $t('word9'), size: 30, color: '#3498DB' },
+  { text: $t('word10'), size: 30, color: '#9B59B6' },
+  { text: $t('word11'), size: 40, color: '#F39C12' },
+  { text: $t('word12'), size: 40, color: '#D35400' },
+  { text: $t('word13'), size: 25, color: '#1ABC9C' },
+  { text: $t('word14'), size: 25, color: '#2C3E50' },
+  { text: $t('word15'), size: 25, color: '#BDC3C7' },
+  { text: $t('word16'), size: 35, color: '#7F8C8D' },
+  { text: $t('word17'), size: 15, color: '#C0392B' },
+  { text: $t('word18'), size: 20, color: '#8E44AD' },
+  { text: $t('word19'), size: 50, color: '#F1C40F' },
+  { text: $t('word20'), size: 40, color: '#3498DB' },
+  { text: $t('word21'), size: 20, color: '#E67E22' },
+  { text: $t('word22'), size: 20, color: '#2ECC71' },
+  { text: $t('word23'), size: 20, color: '#E74C3C' },
+  { text: $t('word24'), size: 35, color: '#9B59B6' }
 ]);
 
-const getInitialWordStyle = (word: { text: string; size: number }) => {
-
+const getInitialWordStyle = (text: string, size: number, color: string) => {
   return `
-    font-size: ${word.size}px;
+    font-size: ${size}px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
+    color: ${color};
   `;
 };
 
 onMounted(() => {
   intervalId = setInterval(() => {
     if (wordItem.value) {
-      wordItem.value.forEach((item) => {
+      Array.from(wordItem.value).forEach((item: HTMLElement) => {
         const currentTop = parseFloat(item.style.top);
         const currentLeft = parseFloat(item.style.left);
-        const newTop = currentTop + (Math.random() * 40 - 20); // 变化范围在 -20% 到 20% 之间
-        const newLeft = currentLeft + (Math.random() * 40 - 20); // 变化范围在 -20% 到 20% 之间
+        const newTop = currentTop + (Math.random() * 40 - 20);
+        const newLeft = currentLeft + (Math.random() * 40 - 20);
 
-        item.style.top = `${Math.max(0, Math.min(100, newTop))}%`; // 确保新位置在 0% 到 100% 之间
-        item.style.left = `${Math.max(0, Math.min(100, newLeft))}%`; // 确保新位置在 0% 到 100% 之间
+        item.style.top = `${Math.max(0, Math.min(100, newTop))}%`;
+        item.style.left = `${Math.max(0, Math.min(100, newLeft))}%`;
 
-        //透明度也是一样
         const currentOpacity = parseFloat(item.style.opacity);
-        const newOpacity = currentOpacity + (Math.random() * 0.2 - 0.1); // 变化范围在 -0.1 到 0.1 之间
-        item.style.opacity = `${Math.max(0.3, Math.min(0.8, newOpacity))}`; // 确保新透明度在 0.3 到 0.8 之间
+        const newOpacity = currentOpacity + (Math.random() * 0.2 - 0.1);
+        item.style.opacity = `${Math.max(0.3, Math.min(0.8, newOpacity))}`;
 
-        //字体大小也是一样
         const currentFontSize = parseFloat(item.style.fontSize);
-        const newFontSize = currentFontSize + (Math.random() * 10 - 5); // 变化范围在 -5 到 5 之间
-        item.style.fontSize = `${Math.max(10, Math.min(50, newFontSize))}`; // 确保新字体大小在 10 到 50 之间
+        const newFontSize = currentFontSize + (Math.random() * 10 - 5);
+        item.style.fontSize = `${Math.max(10, Math.min(50, newFontSize))}`;
 
-        // 对于字体大小小于 20 的词语，进行filter: blur(2px) 处理
         if (newFontSize < 20) {
           item.style.filter = 'blur(2px)';
         } else {
@@ -86,60 +95,50 @@ onUnmounted(() => {
   }
 });
 
-//这里如果locale被修改，就需要重新获取翻译
 watch(() => locale.value, () => {
   words.value = [
-    {text: $t('word1'), size: 40},
-    {text: $t('word2'), size: 40},
-    {text: $t('word3'), size: 40},
-    {text: $t('word4'), size: 30},
-    {text: $t('word5'), size: 20},
-    {text: $t('word6'), size: 20},
-    {text: $t('word7'), size: 30},
-    {text: $t('word8'), size: 30},
-    {text: $t('word9'), size: 30},
-    {text: $t('word10'), size: 30},
-    {text: $t('word11'), size: 40},
-    {text: $t('word12'), size: 40},
-    {text: $t('word13'), size: 25},
-    {text: $t('word14'), size: 25},
-    {text: $t('word15'), size: 25},
-    {text: $t('word16'), size: 35},
-    {text: $t('word17'), size: 15},
-    {text: $t('word18'), size: 20},
-    {text: $t('word19'), size: 50},
-    {text: $t('word20'), size: 40},
-    {text: $t('word21'), size: 20},
-    {text: $t('word22'), size: 20},
-    {text: $t('word23'), size: 20},
-    {text: $t('word24'), size: 35}
+    { text: $t('word1'), size: 40, color: '#FF5733' },
+    { text: $t('word2'), size: 40, color: '#33FF57' },
+    { text: $t('word3'), size: 40, color: '#3357FF' },
+    { text: $t('word4'), size: 30, color: '#F1C40F' },
+    { text: $t('word5'), size: 20, color: '#8E44AD' },
+    { text: $t('word6'), size: 30, color: '#E67E22' },
+    { text: $t('word7'), size: 30, color: '#2ECC71' },
+    { text: $t('word8'), size: 30, color: '#E74C3C' },
+    { text: $t('word9'), size: 30, color: '#3498DB' },
+    { text: $t('word10'), size: 30, color: '#9B59B6' },
+    { text: $t('word11'), size: 40, color: '#F39C12' },
+    { text: $t('word12'), size: 40, color: '#D35400' },
+    { text: $t('word13'), size: 25, color: '#1ABC9C' },
+    { text: $t('word14'), size: 25, color: '#2C3E50' },
+    { text: $t('word15'), size: 25, color: '#BDC3C7' },
+    { text: $t('word16'), size: 35, color: '#7F8C8D' },
+    { text: $t('word17'), size: 15, color: '#C0392B' },
+    { text: $t('word18'), size: 20, color: '#8E44AD' },
+    { text: $t('word19'), size: 50, color: '#F1C40F' },
+    { text: $t('word20'), size: 40, color: '#3498DB' },
+    { text: $t('word21'), size: 20, color: '#E67E22' },
+    { text: $t('word22'), size: 20, color: '#2ECC71' },
+    { text: $t('word23'), size: 20, color: '#E74C3C' },
+    { text: $t('word24'), size: 35, color: '#9B59B6' }
   ];
 });
-
 </script>
-
-<template>
-  <div class="about-me-word-cloud-container">
-    <div class="title font-jb-mono">👋{{ $t('aboutMeTitle') }}</div>
-    <div v-for="(word, index) in words" :key="index" class="word font-jb-mono" :style="getInitialWordStyle(word)"
-         ref="wordItem">
-      {{ word.text }}
-    </div>
-  </div>
-</template>
 
 <style scoped>
 .about-me-word-cloud-container {
-  height: 100%;
+  background: linear-gradient(to bottom right, #f0f4f8, #c1e1c5);
+  height: 100vh; /* 充满视口高度 */
   width: 100%;
   overflow: hidden;
+  position: relative; /* 使得子元素绝对定位 */
 }
 
 .title {
-  font-size: 1.5em;
+  font-size: 2em;
   font-weight: bold;
   position: absolute;
-  top: 50%;
+  top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -147,10 +146,17 @@ watch(() => locale.value, () => {
 .word {
   position: absolute;
   transition: top 2s, left 2s, transform 0.3s ease, filter 0.5s ease, opacity 2s;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
 }
 
 .word:hover {
   transform: translate(-50%, -50%) scale(1.5);
 }
-
 </style>

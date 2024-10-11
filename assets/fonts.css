@@ -6,5 +6,6 @@
 }
 
 .font-jb-mono {
-    font-family: 'JetBrains Mono', monospace;
+    /* 设置fallback防止出现宋体 */
+    font-family: 'JetBrains Mono', 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Console', 'Microsoft YaHei', 'WenQuanYi Micro Hei', monospace;
 }

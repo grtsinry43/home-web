@@ -27,25 +27,25 @@ const personalDetails = [
 <template>
   <UContainer>
     <section class="intro-section">
-      <!--<h1 class="intro-title">{{ t('aboutMe') }}</h1>-->
-      <!--<p class="intro-description">{{ t('about.description') }}</p>-->
+      <!--<h1 class="intro-title">{{ t('aboutMe')}}</h1>-->
+      <!--<p class="intro-description">{{ t('about.description')}}</p>-->
     </section>
 
-    <AboutMe />
+    <AboutMe class="cloud-inner"/>
 
     <!--<section class="details-section">-->
-    <!--  <h2>{{ t('about.details') }}</h2>-->
+    <!--  <h2>{{ t('about.details')}}</h2>-->
     <!--  <ul>-->
     <!--    <li v-for="detail in personalDetails" :key="detail.label" class="detail-item">-->
-    <!--      <strong>{{ detail.label }}:</strong> {{ detail.value }}-->
+    <!--      <strong>{{detail.label}}:</strong> {{detail.value}}-->
     <!--    </li>-->
     <!--  </ul>-->
     <!--</section>-->
 
     <!--<section class="tech-philosophy">-->
-    <!--  <h2>{{ t('about.techPhilosophy') }}</h2>-->
-    <!--  <p>{{ t('about.philosophyDescription') }}</p>-->
-    <!--  <blockquote class="quote">{{ t('about.quote') }}</blockquote>-->
+    <!--  <h2>{{ t('about.techPhilosophy')}}</h2>-->
+    <!--  <p>{{ t('about.philosophyDescription')}}</p>-->
+    <!--  <blockquote class="quote">{{ t('about.quote')}}</blockquote>-->
     <!--</section>-->
 
     <footer class="footer">
@@ -106,5 +106,17 @@ const personalDetails = [
   justify-content: center;
   gap: 1em;
   margin-top: 3em;
+}
+
+.cloud-container {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.cloud-inner {
+  height: 70vh;
+  width: 100%;
+  overflow: hidden;
 }
 </style>

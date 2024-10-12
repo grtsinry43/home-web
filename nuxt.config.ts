@@ -43,7 +43,9 @@ export default defineNuxtConfig({
             title: '开发，探索与折腾 - GRTSINTY43的个人主页',
             charset: 'utf-8',
             viewport: 'width=device-width, initial-scale=1',
-        }
+        },
+        pageTransition: {name: 'page', mode: 'out-in'}
+
     },
     site: {
         url: 'https://www.grtsinry43.com',
@@ -55,8 +57,8 @@ export default defineNuxtConfig({
     i18n: {
         vueI18n: './i18n.config.ts',
         locales: [
-            { code: 'en', iso: 'en-US', name: 'English' },
-            { code: 'zh', iso: 'zh-CN', name: '中文' }
+            {code: 'en', iso: 'en-US', name: 'English'},
+            {code: 'zh', iso: 'zh-CN', name: '中文'}
         ],
         defaultLocale: 'zh',
     }

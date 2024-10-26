@@ -44,6 +44,12 @@ const friends = ref([
     avatar: 'https://picture-bed-1319447205.cos.ap-guangzhou.myqcloud.com/avatar.png',
     description: 'Nothing is impossible',
     link: 'https://blog.mufen.site/'
+  },
+  {
+    name: '路过',
+    avatar: 'https://www.jikamjmk.cn/upload/1.png',
+    description: 'jika_walking_by',
+    link: 'https://www.jikamjmk.cn/'
   }
 ]);
 </script>
@@ -284,13 +290,13 @@ const friends = ref([
 }
 
 .friend-container {
-  margin: 1em;
+  margin: 1em 0;
 }
 
 .friend-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 1em;
+  gap: 0.5em;
 }
 
 .friend-card {

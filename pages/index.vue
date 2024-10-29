@@ -296,7 +296,7 @@ const friends = ref([
 .friend-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5em;
+  gap: 0;
 }
 
 .friend-card {

@@ -1,23 +1,36 @@
 <script setup lang="ts">
-import {ref} from 'vue'
+import {onMounted, ref} from 'vue'
 import {useI18n} from "vue-i18n";
 
-const { locale } = useI18n();
+const {locale} = useI18n();
 const colorMode = useColorMode()
 const isMenuOpen = ref(false)
 const localePath = useLocalePath()
-
-const toggleTheme = () => {
-  colorMode.preference = colorMode.preference === 'dark' ? 'light' : 'dark'
-}
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
 }
 
+const toggleTheme = () => {
+  if (colorMode.preference === 'system') {
+    colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark';
+    buttonState.value = colorMode.preference === 'dark';
+  } else {
+    colorMode.preference = colorMode.preference === 'dark' ? 'light' : 'dark';
+    buttonState.value = colorMode.preference === 'dark';
+  }
+};
+
 const toggleLocale = () => {
   locale.value = locale.value === 'en' ? 'zh' : 'en';
 };
+
+const buttonState = ref(false);
+
+onMounted(() => {
+  // 根据最开始的主题设置按钮的图标
+  buttonState.value = colorMode.value === 'dark';
+})
 </script>
 
 <template>
@@ -39,13 +52,14 @@ const toggleLocale = () => {
         <UToggle
             on-icon="i-heroicons-moon-20-solid"
             off-icon="i-heroicons-sun-20-solid"
-            :model-value="colorMode.preference === 'dark'"
+            :model-value="buttonState"
             @change="toggleTheme"
         />
       </div>
       <!-- Icons Container -->
       <div class="actions-container hidden lg:grid">
-        <Icon class="language-toggle-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-heroicons-language" @click="toggleLocale"/>
+        <Icon class="language-toggle-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-heroicons-language"
+              @click="toggleLocale"/>
         <Icon class="rss-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-heroicons-rss"/>
         <a href="https://github.com/grtsinry43/home-web" target="_blank">
           <Icon class="github-icon hover:text-blue-400 dark:hover:text-blue-600" name="i-grommet-icons:github"/>
@@ -64,7 +78,7 @@ const toggleLocale = () => {
           $t('about')
         }}
       </NuxtLink>
-      <!--<NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" :to="$i18n.localePath('/blog')">{{ $t('blog') }}</NuxtLink>-->
+      <!--<NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" :to="$i18n.localePath('/blog')">{{ $t('blog')}}</NuxtLink>-->
       <NuxtLink class="nav-item hover:text-blue-400 dark:hover:text-blue-600" :to="localePath('/project')">
         {{ $t('project') }}
       </NuxtLink>

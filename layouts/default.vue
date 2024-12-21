@@ -18,16 +18,16 @@ const notification = ref(locale.value === 'en' ? 'The content of this site is st
   <div class="app-container">
     <NavBar class="nav-bar-desktop"/>
     <NavBarMobile class="nav-bar-mobile"/>
-    <UContainer class="global-alert-container" v-if="showAlert">
-      <!--全站通知，仅在获取到后端数据时显示-->
-      <UAlert :title="title" @close="showAlert = false"
-              :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'gray', variant: 'link', padded: false }"
-              icon="i-heroicons:chat-bubble-left-ellipsis">
-        <template #description>
-          <span>{{ notification }}</span>
-        </template>
-      </UAlert>
-    </UContainer>
+    <!--<UContainer class="global-alert-container" v-if="showAlert">-->
+    <!--  &lt;!&ndash;全站通知，仅在获取到后端数据时显示&ndash;&gt;-->
+    <!--  <UAlert :title="title" @close="showAlert = false"-->
+    <!--          :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'gray', variant: 'link', padded: false }"-->
+    <!--          icon="i-heroicons:chat-bubble-left-ellipsis">-->
+    <!--    <template #description>-->
+    <!--      <span>{{ notification }}</span>-->
+    <!--    </template>-->
+    <!--  </UAlert>-->
+    <!--</UContainer>-->
     <div class="content-container">
       <slot></slot>
     </div>

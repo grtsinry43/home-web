@@ -4,7 +4,6 @@ import {defineProps} from 'vue';
 const props = defineProps<{
   name: string;
   description: string;
-  detailsUrl: string;
 }>();
 </script>
 
@@ -12,7 +11,7 @@ const props = defineProps<{
   <UCard class="project-preview-container">
     <h3 class="project-preview-title font-jb-mono">{{ name }}</h3>
     <p class="project-preview-description text-[#666666] dark:text-[#cccccc]">{{ description }}</p>
-    <UButton :to="detailsUrl" :label="$t('detail')" color="gray" class="btn-item">
+    <UButton to="/project" :label="$t('detail')" color="gray" class="btn-item">
       <template #trailing>
         <UIcon name="i-heroicons-arrow-right-20-solid" class="w-5 h-5"/>
       </template>

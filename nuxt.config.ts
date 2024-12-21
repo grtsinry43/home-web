@@ -25,6 +25,7 @@ export default defineNuxtConfig({
         "@formkit/auto-animate",
         "@nuxt/image",
         '@nuxtjs/robots',
+        '@nuxtjs/sanity'
     ],
     // devServer: {
     //     host: '192.168.123.20',
@@ -37,6 +38,10 @@ export default defineNuxtConfig({
                 changeOrigin: true,
             },
         },
+    },
+    sanity: {
+        projectId: "3p9gcb1i",
+        dataset: "production",
     },
     app: {
         head: {

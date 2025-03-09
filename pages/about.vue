@@ -72,13 +72,11 @@ const cardSize = (index: number) => {
 }
 
 .cloud-inner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2em;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  max-width: 1200px;
-  height: auto;
+  height: 100%;
 }
 
 .grid-container {

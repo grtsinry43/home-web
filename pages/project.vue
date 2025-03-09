@@ -51,5 +51,7 @@ const {data: projects} = await useSanityQuery<SanityDocument[]>(PROJECTS_QUERY);
 </template>
 
 <style scoped>
-
+.project-container {
+  padding: 1em;
+}
 </style>

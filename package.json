@@ -19,6 +19,7 @@
     "@sanity/image-url": "^1.1.0",
     "@vueuse/integrations": "^11.0.3",
     "less": "^4.2.0",
+    "lucide-vue-next": "^0.479.0",
     "nuxt": "^3.12.4",
     "vue": "latest"
   },

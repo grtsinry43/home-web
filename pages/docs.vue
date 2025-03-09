@@ -15,6 +15,8 @@ useHead({
     }
   ]
 })
+
+window.location.href = 'https://docs.grtsinry43.com';
 </script>
 
 <template>

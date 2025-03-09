@@ -39,7 +39,7 @@ const {data: projects} = await useSanityQuery<SanityDocument[]>(PROJECTS_QUERY);
 </script>
 
 <template>
-  <UContainer>
+  <UContainer class="main-container">
     <!--<div class="alert-container" v-if="showAlert">-->
     <!--  <UAlert-->
     <!--      :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'gray', variant: 'link', padded: false }"-->
@@ -48,75 +48,99 @@ const {data: projects} = await useSanityQuery<SanityDocument[]>(PROJECTS_QUERY);
     <!--      @close="showAlert = false"-->
     <!--  />-->
     <!--</div>-->
-    <div class="content-container" style="margin: 10vh 0">
-      <div class="top-left-container">
-        <div class="slogan font-jb-mono scroll-item" v-scroll-spring>
-          <p>Coding,</p>
-          <p>build a better world</p>
-          <p>together!</p>
+    <div class="hero-section">
+      <div class="hero-content">
+        <div class="slogan-container scroll-item" v-scroll-spring>
+          <h1 class="slogan">
+            <span class="gradient-text">Coding,</span>
+            <span>build a better world</span>
+            <span>together!</span>
+          </h1>
+          <p class="slogan-cn" v-if="locale === 'zh'" v-scroll-spring>{{ t('slogan.cn') }}</p>
         </div>
-        <span class="slogan-cn scroll-item" v-if="locale === 'zh'" v-scroll-spring>{{ t('slogan.cn') }}</span>
-        <br/>
+
         <div class="button-container scroll-item" v-scroll-spring>
           <UButton to="https://github.com/grtsinry43" target="_blank"
-                   icon="i-grommet-icons:github" style="vertical-align: -4px"
-                   class="btn-item github-link bg-blue-400 text-black dark:bg-blue-800 dark:text-white">
+                   icon="i-grommet-icons:github"
+                   class="btn-item github-btn">
             {{ t('buttons.github') }}
           </UButton>
-          <UButton to="https://blog.grtsinry43.com/" :label="t('buttons.learningLog')" color="gray" class="btn-item"
+          <UButton to="https://blog.grtsinry43.com/"
+                   :label="t('buttons.learningLog')"
+                   class="btn-item blog-btn"
                    v-scroll-spring>
             <template #trailing>
-              <UIcon name="i-heroicons-arrow-right-20-solid" class="w-5 h-5 btn-more-icon"/>
+              <UIcon name="i-heroicons-arrow-right-20-solid" class="btn-more-icon"/>
             </template>
           </UButton>
-          <UButton color="gray" class="btn-item scroll-item" disabled v-scroll-spring>
+          <UButton class="btn-item resume-btn scroll-item" disabled v-scroll-spring>
             {{ t('buttons.resume') }}
           </UButton>
         </div>
       </div>
-      <div class="top-right-container">
-        <div class="img-container scroll-item" v-scroll-spring>
-          <img src="@/assets/home-img.svg" alt="">
-        </div>
+      <div class="hero-image scroll-item" v-scroll-spring>
+        <img src="@/assets/home-img.svg" alt="Hero illustration">
       </div>
     </div>
+
+    <div class="section-title scroll-item" v-scroll-spring>
+      <h2>My Work</h2>
+      <div class="title-underline"></div>
+    </div>
+
     <div class="card-container">
-      <UCard class="item-card scroll-item" v-scroll-spring>
-        <div class="item-card-inner flex flex-col">
-          <span>{{ t('cards.currentProjects') }}</span>
+      <UCard class="item-card projects-card scroll-item" v-scroll-spring>
+        <div class="card-header">
+          <h3>{{ t('cards.currentProjects') }}</h3>
+        </div>
+        <div class="card-content">
           <ProjectPreview
               v-for="project in projects"
               :key="project._id"
-              class="scroll-item"
+              class="project-item scroll-item"
               v-scroll-spring
               :name="project.name"
               :description="project.description"
           />
-          <NuxtLink to="/project" label="查看更多" color="gray" class="btn-more">
+          <NuxtLink to="/project" class="see-more-link">
             <span>{{ t('buttons.seeMore') }}</span>
-            <UIcon name="i-heroicons-arrow-right-20-solid" class="w-5 h-5"/>
+            <UIcon name="i-heroicons-arrow-right-20-solid" class="see-more-icon"/>
           </NuxtLink>
         </div>
       </UCard>
-      <UCard class="item-card overflow-y-auto scroll-item" v-scroll-spring>
-        <span>{{ t('cards.learningProgress') }}</span>
-        <LearnProgress
-            v-for="item in progress"
-            :key="item._id"
-            class="scroll-item"
-            v-scroll-spring
-            :name="item.name"
-            :description="item.description"
-            :progress="item.progress"
-        />
+
+      <UCard class="item-card progress-card scroll-item" v-scroll-spring>
+        <div class="card-header">
+          <h3>{{ t('cards.learningProgress') }}</h3>
+        </div>
+        <div class="card-content">
+          <LearnProgress
+              v-for="item in progress"
+              :key="item._id"
+              class="progress-item scroll-item"
+              v-scroll-spring
+              :name="item.name"
+              :description="item.description"
+              :progress="item.progress"
+          />
+        </div>
       </UCard>
+
       <UCard class="item-card about-me-card scroll-item" v-scroll-spring>
-        <span>{{ t('cards.aboutMe') }}</span>
-        <AboutMe/>
+        <div class="card-header">
+          <h3>{{ t('cards.aboutMe') }}</h3>
+        </div>
+        <div style="height: 100%;width: 100%;position: absolute;">
+          <AboutMe/>
+        </div>
       </UCard>
     </div>
-    <div class="friend-container">
-      <span class="font-bold">{{ t('friends') }}</span>
+
+    <div class="friends-section">
+      <div class="section-title scroll-item" v-scroll-spring>
+        <h2>{{ t('friends') }}</h2>
+        <div class="title-underline"></div>
+      </div>
       <div class="friend-list">
         <FriendCard
             v-for="friend in friends"
@@ -125,7 +149,7 @@ const {data: projects} = await useSanityQuery<SanityDocument[]>(PROJECTS_QUERY);
             :avatar="friend.avatar"
             :description="friend.description"
             :link="friend.link"
-            class="scroll-item"
+            class="friend-item scroll-item"
             v-scroll-spring
         />
       </div>
@@ -135,150 +159,332 @@ const {data: projects} = await useSanityQuery<SanityDocument[]>(PROJECTS_QUERY);
 
 
 <style lang="less" scoped>
-.content-container {
+// Variables
+@primary-color: #3b82f6;
+@secondary-color: #10b981;
+@accent-color: #8b5cf6;
+@text-color: #1f2937;
+@text-light: #6b7280;
+@card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+@transition-standard: all 0.3s ease-in-out;
+
+// Dark mode variables
+:root.dark {
+  --card-bg: #1e293b;
+  --text-color: #f3f4f6;
+  --text-light: #d1d5db;
+}
+
+.main-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+// Hero Section
+.hero-section {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  margin: 8vh 0;
+  gap: 2rem;
 }
 
-.top-left-container {
-  flex: 1 1 400px;
+.hero-content {
+  flex: 1 1 500px;
 }
 
-.top-right-container {
-  flex: 1 1 400px;
+.slogan-container {
+  margin-bottom: 2rem;
 }
 
 .slogan {
-  font-weight: bolder;
-  font-size: 40px;
-  letter-spacing: -1px; // 减小一下字距
-  line-height: 50px;
-  padding: 30px;
+  font-weight: 800;
+  font-size: 3.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  margin-bottom: 1rem;
+
+  span {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, @primary-color, @accent-color);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .slogan-cn {
-  font-weight: bolder;
-  padding: 30px;
-  font-size: 16px;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: @text-light;
+  margin-top: 1rem;
 }
 
-.img-container {
-  margin: 2em auto;
-  width: 60%;
-  text-align: center;
+.hero-image {
+  flex: 1 1 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   img {
-    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.15));
+    transform: translateY(0);
+    transition: transform 0.5s ease-out;
+
+    &:hover {
+      transform: translateY(-10px);
+    }
   }
 }
 
-@media (max-width: 800px) {
-  .content-container {
-    flex-direction: column;
-  }
-}
-
+// Buttons
 .button-container {
-  margin: 30px;
-
-  .btn-item, a {
-    margin-right: 1em;
-    margin-bottom: 1em;
-  }
-}
-
-.alert-container {
-  margin: 1em;
-}
-
-.item-card {
-  margin: 1em;
-}
-
-.card-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.btn-item {
+  border-radius: 12px;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  transition: @transition-standard;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+}
+
+.github-btn {
+  background: @primary-color;
+  color: white;
+
+  &:hover {
+    background: darken(@primary-color, 10%);
+  }
+}
+
+.blog-btn {
+  background: white;
+  color: @text-color;
+  border: 2px solid @text-light;
+
+  &:hover {
+    background: #f9fafb;
+    border-color: @primary-color;
+  }
+
+  .btn-more-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-left: 0.5rem;
+    transition: transform 0.2s ease;
+  }
+
+  &:hover .btn-more-icon {
+    transform: translateX(4px);
+  }
+}
+
+.resume-btn {
+  background: #f3f4f6;
+  color: @text-light;
+
+  &:not([disabled]):hover {
+    background: #e5e7eb;
+  }
+}
+
+// Section Titles
+.section-title {
+  text-align: center;
+  margin: 4rem 0 2rem;
+  position: relative;
+
+  h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .title-underline {
+    height: 4px;
+    width: 80px;
+    background: linear-gradient(90deg, @primary-color, @accent-color);
+    margin: 0 auto;
+    border-radius: 2px;
+  }
+}
+
+// Cards
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 4rem;
 }
 
 .item-card {
-  flex: 1 1 calc(33.333% - 1em);
-  margin: 0.5em;
-}
-
-@media (max-width: 1200px) {
-  .item-card {
-    flex: 1 1 calc(50% - 1em);
-  }
-}
-
-@media (max-width: 800px) {
-  .item-card {
-    flex: 1 1 100%;
-  }
-}
-
-.btn-more {
-  text-align: right;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: @card-shadow;
+  transition: @transition-standard;
+  height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+}
+
+.card-header {
+  padding: 1.5rem 1.5rem 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+}
+
+.card-content {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-item {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.progress-item {
+  margin-bottom: 1.25rem;
 }
 
 .about-me-card {
   position: relative;
   overflow: hidden;
-  min-height: 500px;
+  min-height: 400px;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: 200px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' fill='none'%3E%3Cpath d='M100 0C44.8 0 0 44.8 0 100s44.8 100 100 100 100-44.8 100-100S155.2 0 100 0z' fill='%233b82f620'/%3E%3C/svg%3E");
 }
 
-.friend-container {
-  margin: 1em 0;
+.see-more-link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: auto;
+  padding-top: 1rem;
+  font-weight: 600;
+  color: @primary-color;
+  text-decoration: none;
+  transition: @transition-standard;
+
+  .see-more-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-left: 0.5rem;
+    transition: transform 0.2s ease;
+  }
+
+  &:hover {
+    color: darken(@primary-color, 10%);
+
+    .see-more-icon {
+      transform: translateX(4px);
+    }
+  }
+}
+
+// Friends Section
+.friends-section {
+  margin: 4rem 0;
 }
 
 .friend-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
 
-.friend-card {
-  flex: 1 1 calc(25% - 1em); /* 4 cards per row */
-}
+.friend-item {
+  transition: @transition-standard;
 
-@media (max-width: 1200px) {
-  .friend-card {
-    flex: 1 1 calc(33.333% - 1em); /* 3 cards per row */
+  &:hover {
+    transform: translateY(-5px);
   }
 }
 
-@media (max-width: 800px) {
-  .friend-card {
-    flex: 1 1 calc(50% - 1em); /* 允许两个卡片一行 */
-  }
-}
-
-@media (max-width: 500px) {
-  .friend-card {
-    flex: 1 1 100%; /* 手机尺寸一行一个 */
-  }
-}
-
-/* 初始状态，元素处于下方且不可见，并带有模糊效果 */
+// Animation
 .scroll-item {
   opacity: 0;
-  filter: blur(10px); /* 元素模糊 25px */
-  transform: translateY(20px); /* 元素初始位移 20px */
-  transition: transform 0.5s ease-out, opacity 0.5s ease-out, filter 0.5s ease-out; /* 为 filter 添加动画 */
+  filter: blur(8px);
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out,
+  filter 0.8s ease-out,
+  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 当元素进入视口时，透明度变为 1，模糊度变为 0，且上移回原位 */
 .scroll-in {
   opacity: 1;
-  filter: blur(0); /* 模糊效果消失 */
-  transform: translateY(0); /* 元素回到原始位置 */
-  transition: transform 0.5s ease-out, opacity 0.5s ease-out, filter 0.5s ease-out; /* 确保 filter 也有动画 */
+  filter: blur(0);
+  transform: translateY(0);
 }
 
+// Responsive adjustments
+@media (max-width: 768px) {
+  .slogan {
+    font-size: 2.5rem;
+  }
+
+  .hero-section {
+    margin: 4vh 0;
+  }
+
+  .card-container {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title h2 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .slogan {
+    font-size: 2rem;
+  }
+
+  .button-container {
+    flex-direction: column;
+    align-items: stretch;
+
+    .btn-item {
+      width: 100%;
+      margin-bottom: 0.75rem;
+    }
+  }
+}
 </style>

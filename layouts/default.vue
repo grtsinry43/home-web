@@ -17,7 +17,7 @@ const notification = ref(locale.value === 'en' ? 'The content of this site is st
 <template>
   <div class="app-container">
     <NavBar class="nav-bar-desktop"/>
-    <NavBarMobile class="nav-bar-mobile"/>
+    <!--<NavBarMobile class="nav-bar-mobile"/>-->
     <!--<UContainer class="global-alert-container" v-if="showAlert">-->
     <!--  &lt;!&ndash;全站通知，仅在获取到后端数据时显示&ndash;&gt;-->
     <!--  <UAlert :title="title" @close="showAlert = false"-->
@@ -48,15 +48,6 @@ const notification = ref(locale.value === 'en' ? 'The content of this site is st
   display: none;
 }
 
-@media (max-width: 800px) {
-  .nav-bar-desktop {
-    display: none;
-  }
-
-  .nav-bar-mobile {
-    display: block;
-  }
-}
 
 .global-alert-container {
   transform: translateY(5em);
